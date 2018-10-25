@@ -8,7 +8,6 @@ public class FibonacciReactorTest {
 
     @Test
     public void testFibonacciNumber() {
-
         Flux<Long> fibonacciGenerator = Flux.generate(() -> Tuples.<Long,Long>of(0L, 1L),
                                                             (state, sink) -> {
                                                                 if (state.getT1() < 0) {
@@ -19,9 +18,12 @@ public class FibonacciReactorTest {
                                                             return Tuples.of(state.getT2(), state.getT1() + state.getT2());
                                         });
 
-        fibonacciGenerator.subscribe(t -> {
-                                    System.out.println(t);
-        });
+        fibonacciGenerator.filter(number -> number % 2 == 0).filter(number -> number % 2 == 0).subscribe(System.out::println);
+
+        System.out.println();
+
+        fibonacciGenerator.subscribe(t -> System.out.println(t));
+
     }
 
 }
