@@ -1,7 +1,8 @@
 package com.laibao.reactor.stream.process.test;
 
+import com.laibao.reactor.stream.process.Factorization;
+import com.laibao.reactor.stream.process.RomanNumber;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -74,5 +75,30 @@ public class FibonacciReactorTest {
 
         fibonacciGenerator.skipUntil(t -> t > 100).subscribe(number -> System.out.println(number));
         System.out.println();
+    }
+
+    @Test
+    public void testMapMethod() {
+        RomanNumber numberConvertor= new RomanNumber();
+        fibonacciGenerator.skip(1)
+                            .take(10)
+                            .map(t-> numberConvertor.toRomanNumeral(t.intValue()))
+                            .subscribe(t -> System.out.println(t));
+
+        System.out.println();
+
+        Factorization factorization = new Factorization();
+        fibonacciGenerator.skip(1).take(10).map(t-> factorization.findFactor(t.intValue())).subscribe(t -> {
+            System.out.println(t);
+        });
+    }
+
+    @Test
+    public void testFlatMapMethod() {
+        Factorization factorization = new Factorization();
+        fibonacciGenerator.skip(1)
+                            .take(10)
+                            .flatMap(t-> Flux.fromIterable(factorization.findFactor(t.intValue())))
+                            .subscribe(t -> System.out.println(t));
     }
 }
