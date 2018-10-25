@@ -10,6 +10,7 @@
         <module>hello-reactor</module>
 		<module>tck-without-reactor</module>
         <module>tck-with-reactor</module>
+        <module>data-stream-process</module>
     </modules>
     <packaging>pom</packaging>
   
