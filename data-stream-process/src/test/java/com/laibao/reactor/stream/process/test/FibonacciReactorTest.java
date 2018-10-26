@@ -129,4 +129,27 @@ public class FibonacciReactorTest {
         System.out.println();
     }
 
+    @Test
+    public void testCollectionMapMethod() {
+        fibonacciGenerator.take(100)
+                            .collectMap(t -> t % 2 == 0 ? "even": "odd")
+                            //.collectMap(t -> String.valueOf(t))
+                            .subscribe(t -> System.out.println(t));
+        System.out.println();
+
+        fibonacciGenerator.take(100)
+                .collectMultimap(t -> t % 2 == 0 ? "even": "odd")
+                //.collectMap(t -> String.valueOf(t))
+                .subscribe(t -> System.out.println(t));
+
+    }
+
+    @Test
+    public void testReduceMethod() {
+        fibonacciGenerator.take(100).count().subscribe(number -> System.out.println(number));
+        System.out.println();
+
+        fibonacciGenerator.take(100).reduce((a,b) -> a + b).subscribe(number -> System.out.println(number));
+        System.out.println();
+    }
 }
