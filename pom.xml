@@ -12,7 +12,8 @@
         <module>tck-with-reactor</module>
         <module>data-stream-process</module>
         <module>reactor-processor</module>
-    </modules>
+		<module>spring-reactor</module>
+	</modules>
     <packaging>pom</packaging>
   
 	<properties>
