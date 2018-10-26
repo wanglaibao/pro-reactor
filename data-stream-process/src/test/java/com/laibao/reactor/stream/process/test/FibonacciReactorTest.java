@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 import reactor.util.function.Tuples;
 
 import java.time.Duration;
+import java.util.Comparator;
 
 public class FibonacciReactorTest {
 
@@ -101,4 +102,27 @@ public class FibonacciReactorTest {
                             .flatMap(t-> Flux.fromIterable(factorization.findFactor(t.intValue())))
                             .subscribe(t -> System.out.println(t));
     }
+
+
+    @Test
+    public void testRepeatMethod() {
+        fibonacciGenerator.take(10).repeat(20).subscribe(number -> System.out.println(number));
+    }
+
+    @Test
+    public void testCollectionListMethod() {
+        fibonacciGenerator.take(100).collectList().subscribe(number -> System.out.println(number));
+        System.out.println();
+
+        fibonacciGenerator.take(100).collectSortedList().subscribe(number -> System.out.println(number));
+        System.out.println();
+
+        fibonacciGenerator.take(100).collectSortedList(Comparator.reverseOrder()).subscribe(number -> System.out.println(number));
+        System.out.println();
+
+
+        fibonacciGenerator.take(100).collectSortedList((x,y) -> -1 * Long.compare(x,y)).subscribe(number -> System.out.println(number));
+        System.out.println();
+    }
+
 }
