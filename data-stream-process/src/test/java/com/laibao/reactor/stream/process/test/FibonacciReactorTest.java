@@ -152,4 +152,15 @@ public class FibonacciReactorTest {
         fibonacciGenerator.take(100).reduce((a,b) -> a + b).subscribe(number -> System.out.println(number));
         System.out.println();
     }
+
+
+    @Test
+    public void testAllAndOrConditonsMethod() {
+        fibonacciGenerator.take(100).all(x -> x > 100).subscribe(number -> System.out.println(number));
+        System.out.println();
+
+        fibonacciGenerator.take(100).any(x -> x > 100).subscribe(number -> System.out.println(number));
+        System.out.println();
+    }
+
 }
