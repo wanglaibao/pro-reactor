@@ -10,6 +10,7 @@ import reactor.util.function.Tuples;
 
 import java.time.Duration;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class FibonacciReactorTest {
 
@@ -122,6 +123,9 @@ public class FibonacciReactorTest {
 
 
         fibonacciGenerator.take(100).collectSortedList((x,y) -> -1 * Long.compare(x,y)).subscribe(number -> System.out.println(number));
+        System.out.println();
+
+        fibonacciGenerator.take(100).collect(Collectors.toList()).subscribe(number -> System.out.println(number));
         System.out.println();
     }
 
