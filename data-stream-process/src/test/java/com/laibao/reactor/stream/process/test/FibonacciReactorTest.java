@@ -163,4 +163,17 @@ public class FibonacciReactorTest {
         System.out.println();
     }
 
+    @Test
+    public void testConcatMethod() {
+        fibonacciGenerator.take(20)
+                            .concatWith(Flux.just(new Long[]{-1L,-2L,-3L,-4L,-5L,-6L,-7L}))
+                            .subscribe(number -> System.out.println(number));
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        fibonacciGenerator.take(20)
+                .startWith(Flux.just(new Long[]{-1L,-2L,-3L,-4L,-5L,-6L,-7L}))
+                .subscribe(number -> System.out.println(number));
+        System.out.println();
+    }
 }

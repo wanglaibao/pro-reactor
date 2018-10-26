@@ -11,6 +11,7 @@
 		<module>tck-without-reactor</module>
         <module>tck-with-reactor</module>
         <module>data-stream-process</module>
+        <module>reactor-processor</module>
     </modules>
     <packaging>pom</packaging>
   
