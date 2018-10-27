@@ -18,13 +18,6 @@ public class EmployeeController {
         return null;
     }
 
-    @GetMapping("/fibonacci")
-    public List<Long> fibonacci(@RequestHeader("Accept-Encoding") String encoding) {
-        //TODO
-        // Determine Series
-        return null;
-    }
-
     @PostMapping("/department")
     public void createDept(@RequestBody Mono<Department> dept) {
         //TODO
@@ -36,11 +29,5 @@ public class EmployeeController {
         //TODO
         // Find the employee.
         return null;
-    }
-
-    @PostMapping("/department")
-    public void createDept(@ModelAttribute Department dept) {
-        //TODO
-        // Add new department
     }
 }
