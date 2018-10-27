@@ -10,7 +10,7 @@ import reactor.util.function.Tuples;
 public class FibonacciController {
 
     @GetMapping("/fibonacci")
-    public Publisher<Long> fibonacciSeries() {
+    public Publisher<Long> getFibonacciSeries() {
 
         Flux<Long> fibonacciGenerator = Flux.generate(() -> Tuples.<Long, Long>of(0L, 1L),
                                                             (state, sink) -> {
