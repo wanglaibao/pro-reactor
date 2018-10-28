@@ -15,7 +15,8 @@
 		<module>spring-reactor</module>
         <module>spring-reactor-functionalway</module>
         <module>webflux-freemarker</module>
-    </modules>
+		<module>webflux-thymeleaf</module>
+	</modules>
     <packaging>pom</packaging>
   
 	<properties>
