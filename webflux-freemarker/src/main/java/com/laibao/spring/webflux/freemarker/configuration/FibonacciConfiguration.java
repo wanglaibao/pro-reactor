@@ -28,7 +28,7 @@ public class FibonacciConfiguration {
         });
 
         Map<String, Flux> model = new HashMap<>();
-        model.put("series",fibonacciGenerator);
+        model.put("series",fibonacciGenerator.take(10));
 
         RouterFunction<ServerResponse> fibonacciRoute = RouterFunctions.route(RequestPredicates.path("/fibonacci"), request -> ServerResponse.ok().render("numbers",model));
 
