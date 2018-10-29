@@ -33,6 +33,18 @@ public class FluxWithIntervalTest {
         Flux<String> stringFlux = intervalFlux.zipWith(Flux.fromIterable(data), (i, item) -> "item " + i + ": " + item);
         stringFlux.subscribe(System.out::println);
         Thread.sleep(3000);
+
+
+        Flux<String> flux1 = Flux.just("{1}", "{2}", "{3}", "{4}");
+        /**
+         * FLux emits item each 500ms
+         */
+        Flux<String> intervalFlux1 = Flux
+                .interval(Duration.ofMillis(500))
+                .zipWith(flux1, (i, string) -> string);
+
+        intervalFlux1.subscribe(System.out::println);
+        Thread.sleep(3000);
     }
 
 
