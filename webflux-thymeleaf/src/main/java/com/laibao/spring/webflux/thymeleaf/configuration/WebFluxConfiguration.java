@@ -31,6 +31,12 @@ public class WebFluxConfiguration implements WebFluxConfigurer {
         registry.viewResolver(thymeleafViewResolver());
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/resources/**")
+                        .addResourceLocations("classpath:/static/");
+    }
+
     @Bean
     public ThymeleafReactiveViewResolver thymeleafViewResolver() {
         final ThymeleafReactiveViewResolver viewResolver = new ThymeleafReactiveViewResolver();
