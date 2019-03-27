@@ -19,7 +19,8 @@
             <dependency>
                 <groupId>io.projectreactor</groupId>
                 <artifactId>reactor-bom</artifactId>
-                <version>Californium-RELEASE</version>
+                <!--<version>Californium-RELEASE</version>-->
+                <version>Californium-SR6</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -36,6 +37,12 @@
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rsocket</groupId>
+            <artifactId>rsocket-core</artifactId>
+            <version>0.12.1</version>
         </dependency>
     </dependencies>
 </project>
