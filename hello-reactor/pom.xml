@@ -52,11 +52,26 @@
             <version>0.8.6.RELEASE</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.projectreactor.addons/reactor-extra -->
+        <dependency>
+            <groupId>io.projectreactor.addons</groupId>
+            <artifactId>reactor-extra</artifactId>
+            <version>3.2.2.RELEASE</version>
+        </dependency>
+
         <dependency>
             <groupId>io.projectreactor.addons</groupId>
             <artifactId>reactor-adapter</artifactId>
             <version>3.2.2.RELEASE</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.projectreactor.addons/reactor-logback -->
+        <dependency>
+            <groupId>io.projectreactor.addons</groupId>
+            <artifactId>reactor-logback</artifactId>
+            <version>3.2.2.RELEASE</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/io.projectreactor/reactor-ipc -->
         <dependency>
@@ -64,6 +79,13 @@
             <artifactId>reactor-ipc</artifactId>
             <version>0.6.2.RELEASE</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.projectreactor.ipc/reactor-codec -->
+        <!--<dependency>-->
+            <!--<groupId>io.projectreactor.ipc</groupId>-->
+            <!--<artifactId>reactor-codec</artifactId>-->
+            <!--&lt;!&ndash;<version>0.5.0.RELEASE</version>&ndash;&gt;-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.projectreactor.ipc/reactor-netty -->
         <dependency>
