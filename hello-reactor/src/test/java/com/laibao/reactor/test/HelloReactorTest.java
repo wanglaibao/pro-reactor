@@ -18,7 +18,9 @@ public class HelloReactorTest {
 
         Flux<String> strFlux = Flux.just("Quick", "brown", "fox", "jumped", "over", "the", "wall");
 
-        strFlux.subscribe(str -> stringBuilder.append(str).append(" "));
+        strFlux.subscribe(strValue -> stringBuilder.append(strValue).append(" "));
+
+        System.out.println(stringBuilder.toString());
 
         assertEquals("Quick brown fox jumped over the wall ",stringBuilder.toString());
     }
