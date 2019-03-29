@@ -14,19 +14,57 @@ import java.util.stream.Collectors;
 
 public class FibonacciReactorTest {
 
-    private  Flux<Long> fibonacciGenerator = null;
+    private  Flux<Integer> fibonacciGenerator = null;
 
     @Before
     public void init() {
-        fibonacciGenerator = Flux.generate(() -> Tuples.<Long,Long>of(0L, 1L),
-                (state, sink) -> {
-                    if (state.getT1() < 0) {
-                        sink.complete();
-                    } else {
-                        sink.next(state.getT1());
-                    }
-                    return Tuples.of(state.getT2(), state.getT1() + state.getT2());
-                });
+        //进行初始化操作
+        fibonacciGenerator = Flux.generate(
+                                                () -> Tuples.<Integer,Integer>of(0, 1),
+                                                (state, sink) -> {
+                                                    if (state.getT1() < 0) {
+                                                        sink.complete();
+                                                    } else {
+                                                        sink.next(state.getT1());
+                                                    }
+                                                    return Tuples.of(state.getT2(), state.getT1() + state.getT2());
+                                                }
+                                            );
+    }
+
+    @Test
+    public void testSubscribe() {
+        fibonacciGenerator.subscribe(System.out::println);
+    }
+
+    @Test
+    public void testFilter() {
+        fibonacciGenerator.filter(number -> number % 2 == 0)
+                           // .take(100)
+                            .subscribe(System.out::println);
+    }
+
+    @Test
+    public void testFilterWhen() {
+        fibonacciGenerator.filterWhen(number -> Flux.just(number % 2 == 0))
+                            .subscribe(System.out::println);
+    }
+
+    @Test
+    public void testTake() {
+        fibonacciGenerator.take(20)
+                            .subscribe(System.out::println);
+    }
+
+    @Test
+    public void testTakeLast() {
+        fibonacciGenerator.takeLast(10)
+                            .subscribe(System.out::println);
+    }
+
+    @Test
+    public void testLast() {
+        fibonacciGenerator.last().subscribe(System.out::println);
     }
 
     @Test
@@ -166,13 +204,13 @@ public class FibonacciReactorTest {
     @Test
     public void testConcatMethod() {
         fibonacciGenerator.take(20)
-                            .concatWith(Flux.just(new Long[]{-1L,-2L,-3L,-4L,-5L,-6L,-7L}))
+                            .concatWith(Flux.just(new Integer[]{-1,-2,-3,-4,-5,-6,-7}))
                             .subscribe(number -> System.out.println(number));
         System.out.println();
         System.out.println();
         System.out.println();
         fibonacciGenerator.take(20)
-                .startWith(Flux.just(new Long[]{-1L,-2L,-3L,-4L,-5L,-6L,-7L}))
+                .startWith(Flux.just(new Integer[]{-1,-2,-3,-4,-5,-6,-7}))
                 .subscribe(number -> System.out.println(number));
         System.out.println();
     }
