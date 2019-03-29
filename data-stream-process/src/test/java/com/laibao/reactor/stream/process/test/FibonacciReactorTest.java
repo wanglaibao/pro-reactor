@@ -10,6 +10,7 @@ import reactor.util.function.Tuples;
 
 import java.time.Duration;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class FibonacciReactorTest {
@@ -68,6 +69,23 @@ public class FibonacciReactorTest {
     }
 
     @Test
+    public void testFactorization() {
+        fibonacciGenerator.skip(1)
+                            .take(20)
+                            .map(t-> Factorization.findFactor(t.intValue()))
+                            .subscribe(t -> {System.out.println(t);
+        });
+    }
+
+    @Test
+    public void testFlatMap() {
+        fibonacciGenerator.skip(1)
+                            .take(20)
+                            .flatMap(t-> Flux.fromIterable(Factorization.findFactor(t.intValue())))
+                            .subscribe(System.out::println);
+    }
+
+    @Test
     public void testFilterFibonacciNumber() {
         fibonacciGenerator.filter(number -> number % 2 == 0).filter(number -> number % 2 == 0).subscribe(System.out::println);
 
@@ -83,6 +101,78 @@ public class FibonacciReactorTest {
                           //.subscribe(number -> System.out::println);
     }
 
+
+    @Test
+    public void testSkip() {
+        fibonacciGenerator.take(10)
+                            .skip(2)
+                            .subscribe(System.out::println);
+    }
+
+    @Test
+    public void testSkipDuration() {
+        fibonacciGenerator.skip(Duration.ofMillis(0))
+                            .subscribe(t -> {System.out.println(t); });
+    }
+
+    @Test
+    public void testSkipLast() {
+        fibonacciGenerator.skipLast(40)
+                            .subscribe(System.out::println);
+    }
+
+    @Test
+    public void testSkipUntil() {
+        fibonacciGenerator.skipUntil(number -> number > 200000)
+                            .subscribe(System.out::println);
+    }
+
+    @Test
+    public void testRepeat() {
+        fibonacciGenerator.take(20)
+                            .repeat(2)
+                            .subscribe(System.out::println);
+    }
+
+    @Test
+    public void testFibonacciCollect() {
+        fibonacciGenerator.take(30)
+                            .collectList()
+                            .subscribe(list -> {
+                                for(Integer intValue:list) {
+                                    System.err.println(intValue);
+                                }
+                            });
+    }
+
+    @Test
+    public void testFibonacciCollectSortList() {
+        fibonacciGenerator.take(30)
+                .collectSortedList((a,b) -> -Integer.compare(a,b))
+                .subscribe(list -> {
+                    for(Integer intValue:list) {
+                        System.err.println(intValue);
+                    }
+                });
+    }
+
+    @Test
+    public void testFibonacciCollectMap() {
+        fibonacciGenerator.take(30)
+                .collectMap(integer -> "key: "+integer )
+                .subscribe(map -> {
+                    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                        System.err.println(entry.getKey()+" : "+entry.getValue());
+                    }
+                });
+    }
+
+    @Test
+    public void testReduce() {
+        fibonacciGenerator.take(30)
+                            .reduce((a,b) -> a + b)
+                            .subscribe(System.out::println);
+    }
 
     @Test
     public void testTakeFibonacciNumber() {
