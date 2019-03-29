@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Factorization {
 
-    public List<Integer> findFactor(int number) {
+    public static List<Integer> findFactor(int number) {
         List<Integer> factors= new ArrayList<>();
         for (int i = 1; i <= number; i++) {
             if (number % i == 0) {
