@@ -14,12 +14,14 @@ public class ReactiveController {
         return "Hello WebFlux";
     }
 
-    @GetMapping("/")
+    //以流的形式输出
+    @GetMapping(value = "/",produces = "text/event-stream")
     public Publisher<String> handler() {
         return Flux.just("Hello world!", "This is from webflux");
     }
 
-    @GetMapping("/numbers")
+    //以流的形式输出
+    @GetMapping(value = "/numbers",produces = "text/event-stream")
     public Publisher<Long> handleSeries() {
 
         Flux<Long> fibonacciGenerator = Flux.generate(() -> Tuples.<Long, Long>of(0L, 1L), (state, sink) -> {
