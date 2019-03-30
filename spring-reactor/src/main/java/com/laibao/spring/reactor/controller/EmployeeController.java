@@ -27,7 +27,7 @@ public class EmployeeController {
     }
 
 
-    @GetMapping("/fibonacci")
+    @GetMapping("/fibonacciEncoding")
     public Flux<Long> fibonacci(@RequestHeader("Accept-Encoding") String encoding) {
         // TODO
         return null;

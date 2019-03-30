@@ -6,6 +6,10 @@ public class Greeting {
     public Greeting() {
     }
 
+    public Greeting(String msg) {
+        this.msg = msg;
+    }
+
     public String getMsg() {
         return msg;
     }
