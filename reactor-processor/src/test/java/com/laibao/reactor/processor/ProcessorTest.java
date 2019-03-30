@@ -22,16 +22,15 @@ public class ProcessorTest {
         directProcessor.subscribe(t -> System.out.println(t),
                        e -> e.printStackTrace(),
                        () -> System.out.println("Finished 1"));
-        directProcessor.onNext(10L);
-        directProcessor.onNext(11L);
-        directProcessor.onNext(12L);
-        directProcessor.onNext(13L);
-        directProcessor.onNext(14L);
-        directProcessor.onNext(15L);
-        directProcessor.onComplete();
-        directProcessor.onNext(120L);
-        directProcessor.onNext(121L);
-        directProcessor.onNext(122L);
+        directProcessor.sink()
+                        .next(10L)
+                        .next(11L)
+                        .next(12L)
+                        .next(13L)
+                        .next(14L)
+                        .next(15L)
+                        .complete();
+
         directProcessor.subscribe(t -> System.out.println(t),
                        e -> e.printStackTrace(),
                        () -> System.out.println("Finished 2"));
