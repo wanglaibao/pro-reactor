@@ -10,10 +10,11 @@ import reactor.core.publisher.Flux;
 @RestController
 public class GreetReactiveController {
 
-    @GetMapping("/greetings")
+    //以流的形式输出
+    @GetMapping(value = "/greetings",produces = "text/event-stream")
     public Publisher<Greeting> greetingPublisher() {
         Flux<Greeting> greetingFlux = Flux.<Greeting>generate(synchronousSink -> synchronousSink.next(new Greeting("Hello")))
-                                            .take(50);
+                                            .take(100);
         return greetingFlux;
     }
 }
