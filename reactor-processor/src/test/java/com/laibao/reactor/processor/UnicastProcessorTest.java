@@ -9,7 +9,7 @@ public class UnicastProcessorTest {
 
     @Test
     public void testUnicastProcessor() {
-        UnicastProcessor processor = UnicastProcessor.create();
+        UnicastProcessor<Long> processor = UnicastProcessor.create();
         processor.take(1000).subscribe(t -> System.out.println(t));
         processor.sink().next(10L).next(11L).next(12L);
 
