@@ -22,6 +22,6 @@ public class FibonacciController {
                                     return Tuples.of(state.getT2(), state.getT1() + state.getT2());
         });
 
-        return fibonacciGenerator.take(10);
+        return fibonacciGenerator;
     }
 }
